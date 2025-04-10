@@ -25,7 +25,7 @@ export default function Components() {
   return (
     <Router>
       <div>
-        <h1>Hello, Parse!!</h1>
+        <h1>Hello!!</h1>
         <img
           src="https://pigment.github.io/fake-logos/logos/large/color/fast-banana.png"
           alt="Description of the image"

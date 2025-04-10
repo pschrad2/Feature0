@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from 'react';
 import Parse from "parse";
 import { useNavigate } from "react-router-dom";
-import {getAllUsers} from "../../Common/LearnServices"
+import {getAllUsers, checkFollow} from "../../Common/LearnServices"
 
 const AuthLoggedin = ({ user, isLogin, onChange, onSubmit }) => {
   const navigate = useNavigate(); 
@@ -20,18 +20,56 @@ const AuthLoggedin = ({ user, isLogin, onChange, onSubmit }) => {
   };
 
   // Handle button click for Get All Users
-    const handleFetchUsers = () => {
+    /*const handleFetchUsers = () => {
       getAllUsers().then((results) => {
         console.log(" Users:", results);
         setUsers(results); // store in state to display
         
-      });
-  };
+        /////////////Testing for table relationships
+        const User = Parse.Object.extend("_User");
+        const thisUser = User[0];
+        const otherUser =  User[1]// another PFUser object
 
+        const isFollowing = await checkFollow(currentUser, otherUser);
+
+if (isFollowing) {
+  console.log('You are already following this user.');
+} else {
+  console.log('You are not following this user yet.');
+}
+        
+      });
+  };*/
+  const handleFetchUsers = async () => {
+    try {
+      const results = await getAllUsers();
+      console.log("Users:", results);
+      setUsers(results); // Save users in state
+  
+      // Ensure there are at least 2 users
+      if (results.length >= 2) {
+        const currentUser = results[0]; // Example: the first user
+        const otherUser = results[1];   // Example: the second user
+        console.log(results[0])
+        const isFollowing = await checkFollow(currentUser, otherUser);
+  
+        if (isFollowing) {
+          console.log('You are already following this user.');
+        } else {
+          console.log('You are not following this user yet.');
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching users or checking follow:", error);
+    }
+  };
+  
+  
+  const currentUser = Parse.User.current();
   return (
     <div className="container">
       <header className="header">
-        <h1>Welcome Mentor! View your database:</h1>
+      <h1>Welcome </h1>
         <p className="intro-text"> click here to get all other mentor information. We can add signing in as a mentor or mentee here and have mentors able to see only their mentees information</p>
       </header>
       
