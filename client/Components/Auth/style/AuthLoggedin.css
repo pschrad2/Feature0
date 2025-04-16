@@ -1,0 +1,61 @@
+/* AuthLoggedin.css */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .intro-text {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .main-content button {
+    margin-right: 10px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #0056b3;
+    color: rgb(149, 148, 173);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .main-content button:hover {
+    background-color: #003f7d;
+  }
+  
+  .section {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #93740f;
+    border-radius: 8px;
+  }
+  
+  .section h2 {
+    margin-bottom: 10px;
+  }
+  
+  .footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+  }
+  
+  ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  li {
+    margin-bottom: 5px;
+  }
+  

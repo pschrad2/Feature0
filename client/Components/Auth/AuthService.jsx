@@ -1,25 +1,31 @@
 import Parse from "parse";
 
 // used in auth register component
-export const createUser = (newUser) => {
+export const createUser = async (newUser) => {
   const user = new Parse.User();
-
   user.set("username", newUser.email);
   user.set("firstName", newUser.firstName);
   user.set("lastName", newUser.lastName);
   user.set("password", newUser.password);
   user.set("email", newUser.email);
 
-  console.log("User: ", user);
-  return user
-    .signUp()
-    .then((newUserSaved) => {
-      return newUserSaved;
-    })
-    .catch((error) => {
-      alert(`Error: ${error.message}`);
-    });
+  try {
+    const savedUser = await user.signUp();
+
+    // Now we can safely assign the ACL with the user ID
+    const acl = new Parse.ACL();
+    acl.setPublicReadAccess(true);
+    acl.setWriteAccess(savedUser.id, true); // NOW we have a string ID!
+    savedUser.setACL(acl);
+    await savedUser.save(); // Save the ACL change
+
+    return savedUser;
+  } catch (error) {
+    alert(`Error: ${error.message}`);
+    return null;
+  }
 };
+
 
 // used in auth login component
 export const loginUser = (currUser) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { checkUser } from "../Auth/AuthService";
 
 // ProtectedRoute will check if the user is authenticated
@@ -21,4 +21,17 @@ const ProtectedRoute = ({ element: Component, ...rest }) => {
 };
 
 export default ProtectedRoute;
+
+/*
+export default function ProtectedRoute({ children }) {
+  const location = useLocation();
+
+  if (checkUser()) {
+    return children;
+  } else {
+    // Save the route user was trying to access (optional)
+    return <Navigate to="/auth/login" state={{ from: location }} replace />;
+  }
+}*/
+
 
