@@ -8,7 +8,8 @@ import {
   Button,
   Grid,
   Paper,
-  Rating
+  Rating,
+  TextField
 } from "@mui/material";
 import ChatIcon from "@mui/icons-material/Chat";
 import EmailIcon from "@mui/icons-material/Email";
@@ -16,6 +17,7 @@ import EmailIcon from "@mui/icons-material/Email";
 const UserProfile = () => {
   const { userId } = useParams();
   const [user, setUser] = useState(null);
+  const [documentation, setDocumentation] = useState("");
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -32,44 +34,68 @@ const UserProfile = () => {
 
   if (!user) return <p>Loading profile...</p>;
 
+  const handleDocumentationChange = (event) => {
+    setDocumentation(event.target.value);
+  };
+
   return (
-    <Box>
-      {/* Background Header */}
+    <Box sx={{ backgroundColor: "#f4f4f4", minHeight: "100vh" }}>
+      {/* Background Header with Overlay */}
       <Box
         sx={{
-          height: 250,
+          height: 300,
           backgroundImage: `url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0')`,
           backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}
-      />
-
-      {/* Profile Card */}
-      <Paper
-        elevation={3}
-        sx={{
-          maxWidth: 800,
-          margin: "-80px auto 0 auto",
-          padding: 5,
-          borderRadius: 5,
+          backgroundPosition: "center",
           position: "relative"
         }}
       >
-        <Grid container spacing={3}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "rgba(0, 0, 0, 0.4)"
+          }}
+        />
+      </Box>
+
+      {/* Profile Card */}
+      <Paper
+        elevation={6}
+        sx={{
+          maxWidth: 900,
+          margin: "-100px auto 0 auto",
+          padding: 4,
+          borderRadius: 8,
+          position: "relative",
+          boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
+          backgroundColor: "white"
+        }}
+      >
+        <Grid container spacing={4}>
           {/* Avatar */}
           <Grid item xs={12} sm={4} sx={{ textAlign: "center" }}>
             <Avatar
               alt="User Avatar"
               src="https://i.pravatar.cc/150?img=3"
-              sx={{ width: 120, height: 120, margin: "auto" }}
+              sx={{
+                width: 140,
+                height: 140,
+                margin: "auto",
+                border: "3px solid #fff",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)"
+              }}
             />
-            <Typography variant="h6" sx={{ mt: 1 }}>
+            <Typography variant="h5" sx={{ mt: 2, fontWeight: "bold" }}>
               {user.get("firstName")} {user.get("lastName")}
             </Typography>
-            <Typography color="text.secondary">
+            <Typography color="text.secondary" sx={{ mb: 2 }}>
               Advisor and Consultant
             </Typography>
-            <Box mt={1}>
+            <Box mt={2}>
               <Rating value={4.5} precision={0.5} readOnly />
               <Typography variant="body2" color="text.secondary">
                 153 reviews
@@ -79,27 +105,78 @@ const UserProfile = () => {
 
           {/* Info & Contact */}
           <Grid item xs={12} sm={8}>
-            <Typography variant="h6">Contact Information</Typography>
+            <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+              Contact Information
+            </Typography>
             <Typography>Email: {user.get("email")}</Typography>
             <Typography>Username: {user.get("username")}</Typography>
             <Typography>
               Joined: {user.createdAt?.toLocaleDateString()}
             </Typography>
 
-            <Box mt={2} display="flex" gap={2}>
-              <Button variant="contained" startIcon={<ChatIcon />}>
+            <Box mt={3} display="flex" gap={3}>
+              <Button variant="contained" color="primary" startIcon={<ChatIcon />} sx={{ minWidth: "120px" }}>
                 Chat
               </Button>
-              <Button variant="outlined" startIcon={<EmailIcon />}>
+              <Button variant="outlined" color="primary" startIcon={<EmailIcon />} sx={{ minWidth: "120px" }}>
                 Email
               </Button>
+            </Box>
+
+            {/* Google Meet Link */}
+            <Box mt={4}>
+              <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                Join Google Meet
+              </Typography>
+              <Button
+                variant="contained"
+                color="secondary"
+                href="https://meet.google.com/"
+                target="_blank"
+                sx={{ marginTop: "1rem" }}
+              >
+                Join Meeting
+              </Button>
+            </Box>
+
+            {/* Google Form Link */}
+            <Box mt={4}>
+              <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                Fill Out Google Form
+              </Typography>
+              <Button
+                variant="outlined"
+                color="secondary"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfyFmwwHfseoPqffn9TtAPX4XAI-W9weFAan3U4wlnM_qOcoA/viewform?usp=dialog"
+                target="_blank"
+                sx={{ marginTop: "1rem" }}
+              >
+                Open Form
+              </Button>
+            </Box>
+
+            {/* Documentation */}
+            <Box mt={4}>
+              <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                Documentation
+              </Typography>
+              <TextField
+                label="Enter your notes"
+                variant="outlined"
+                multiline
+                rows={4}
+                fullWidth
+                value={documentation}
+                onChange={handleDocumentationChange}
+                sx={{ marginTop: "1rem" }}
+              />
             </Box>
           </Grid>
         </Grid>
       </Paper>
 
       {/* Optional: Bottom Sections */}
-      <Box sx={{ maxWidth: 900, mx: "auto", mt: 4 }}>
+      <Box sx={{ maxWidth: 900, mx: "auto", mt: 6, paddingX: 2 }}>
         <Typography variant="h5" gutterBottom>
           Introduction
         </Typography>

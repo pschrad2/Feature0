@@ -31,29 +31,7 @@ const AuthLoggedin = ({ user, isLogin, onChange, onSubmit }) => {
         
       });
   };
-  /*const handleFetchUsers = async () => {
-    try {
-      const results = await getAllUsers();
-      console.log("Users:", results);
-      setUsers(results); // Save users in state
-  
-      // Ensure there are at least 2 users
-      if (results.length >= 2) {
-        const currentUser = results[0]; 
-        const otherUser = results[1];   
-        const isFollowing = await checkFollow(currentUser, otherUser);
-  
-        if (isFollowing) {
-          console.log('You are already following this user.');
-        } else {
-          console.log('You are not following this user yet.');
-          
-        }
-      }
-    } catch (error) {
-      console.error("Error fetching users or checking follow:", error);
-    }
-  };*/
+
 
   const handlecreateFollowing = async() => {
     try{
@@ -106,7 +84,7 @@ useEffect(() => {
   return (
     <div className="container">
       <header className="header">
-      <h1>Welcome </h1>
+      <h1></h1>
         <p className="intro-text"> click here to get all other mentor information. We can add signing in as a mentor or mentee here and have mentors able to see only their mentees information</p>
       </header>
       
