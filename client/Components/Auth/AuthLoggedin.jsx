@@ -4,6 +4,8 @@ import Parse from "parse";
 import { useNavigate } from "react-router-dom";
 import {getAllUsers, checkFollow, createFollow} from "../../Common/LearnServices"
 import "../Auth/style/AuthLoggedin.css"
+import { Card, CardContent, Typography, Button } from '@mui/material';
+
 
 
 const AuthLoggedin = ({ user, isLogin, onChange, onSubmit }) => {
@@ -123,20 +125,29 @@ useEffect(() => {
         {/* Display followed users */}
         
       {followedUsers.length > 0 && (
-        <div>
-          <h3>You are following:</h3>
-          <ul>
-            {followedUsers.map((user) => (
-              <li key={user.id}>
-              <strong>{user.get("firstName")} {user.get("lastName")}</strong><br />
-              Username: {user.get("username")}<br />
-              Email: {user.get("email")}<br />
-              <button onClick={() => navigate(`/profile/${user.id}`)}>
-              View Profile
-              </button>
-              </li>
-            ))}
-          </ul>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+        {followedUsers.map((user) => (
+          <Card key={user.id} sx={{ minWidth: 275, maxWidth: 300 }}>
+            <CardContent>
+              <Typography variant="h6" component="div">
+                {user.get("firstName")} {user.get("lastName")}
+              </Typography>
+              <Typography color="text.secondary">
+                Username: {user.get("username")}
+              </Typography>
+              <Typography color="text.secondary">
+                Email: {user.get("email")}
+              </Typography>
+              <Button
+                size="small"
+                onClick={() => navigate(`/profile/${user.id}`)}
+                sx={{ marginTop: 1 }}
+              >
+                View Profile
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
         </div>
       )}
 

@@ -41,7 +41,7 @@ export default function Components() {
     <Router>
       
       <div className="page-container">
-        <h1>Hello!!</h1>
+      <AuthModule /> 
         <img
           className="logo"
           src="https://pigment.github.io/fake-logos/logos/large/color/fast-banana.png"
@@ -62,8 +62,7 @@ export default function Components() {
 
           <Route path="*" element={<Navigate to="/auth" replace />} />
         </Routes>
-      </div>
-      <AuthModule />   
+      </div>  
     </Router>
   );
 
