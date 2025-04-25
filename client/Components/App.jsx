@@ -17,6 +17,7 @@ import UserProfile from "../Components/Auth/profile/UserProfile.jsx";
 import "../Components/CompStyle.css"
 import ProtectedLink from "./Protected/ProtectedLink";
 import Layout from "./Layout/Layout.jsx";
+import MentorDiscovery from './MentorDiscovery';
 /*import MainList from "../Components/Main/MainList.jsx";
 */
 
@@ -26,38 +27,36 @@ export default function Components() {
   const [users, setUsers] = useState([]);
   
     
-  return (
-    <Router>
-      
-      <div className="page-container">
-    <h1>Hello!!</h1>
-    <img
-      className="logo"
-      src="https://pigment.github.io/fake-logos/logos/large/color/fast-banana.png"
-      alt="logo"
-      width="300"
-    />
-    
-    
+    return (
+        <Router>
+            <div className="page-container">
+                <h1>Hello!!</h1>
+                <img
+                    className="logo"
+                    src="https://pigment.github.io/fake-logos/logos/large/color/fast-banana.png"
+                    alt="logo"
+                    width="300"
+                />
 
-        <Routes>
-        <Route path="/auth" element={<AuthModule />} />
-          <Route path="/auth/register" element={<AuthRegister />} />
-          <Route path="/auth/login" element={<AuthLogin/>}/>
-          <Route
-            path="/auth/loggedin"
-             element={
-              <ProtectedRoute> 
-              <AuthLoggedin />
-              </ProtectedRoute>
-            }
-             />
-          
-          <Route path="/profile/:userId" element={<UserProfile />} />
+                <nav>
+                    <Link to="/auth">Auth</Link> |
+                    <Link to="/mentors">Mentor Discovery</Link>
+                </nav>
 
-          <Route path="*" element={<Navigate to="/auth" replace />} />
-        </Routes>
-        </div>
-    </Router>
-  );
+                <Routes>
+                    <Route path="/auth" element={<AuthModule />} />
+                    <Route path="/auth/register" element={<AuthRegister />} />
+                    <Route path="/auth/login" element={<AuthLogin />} />
+                    <Route
+                        path="/auth/loggedin"
+                        element={<ProtectedRoute element={AuthLoggedin} />}
+                    />
+                    <Route path="/profile/:userId" element={<UserProfile />} />
+                    <Route path="/mentors" element={<MentorDiscovery />} />
+                    <Route path="/test" element={<div>Test route works!</div>} />
+                    
+                </Routes>
+            </div>
+        </Router>
+    );
 }
