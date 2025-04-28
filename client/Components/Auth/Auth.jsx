@@ -19,14 +19,20 @@ const AuthModule = () => {
         <button>Account</button>
       </ProtectedLink>
       <br/>
-      <br/>
+      <br />
       <Link to="/auth/register">
         <button>Register</button>
       </Link>
       <br />
       <br />
+
       <Link to="/auth/login">
         <button>Login</button>
+      </Link>
+      <br />
+      <br />
+      <Link to="/auth/mentors">
+        <button>Discover</button>
       </Link>
     </div>
   );

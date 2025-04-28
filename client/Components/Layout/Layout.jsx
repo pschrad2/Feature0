@@ -16,7 +16,8 @@ export default function Layout({ children }) {
           <Link to="/">Home</Link>
           <Link to="/auth/login">Login</Link>
           <Link to="/auth/register">Register</Link>
-          <Link to="/profile/123">Account</Link>
+          <Link to="/profile/123">Accounts</Link>
+          <Link to="/auth/mentors">Mentor Discovery</Link>
         </nav>
       </header>
       <main className="main-content">

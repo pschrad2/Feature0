@@ -15,6 +15,7 @@ import AuthLoggedin from "../Components/Auth/AuthLoggedin.jsx";
 import ProtectedRoute from "../Components/Protected/ProtectedRoute.jsx";
 import UserProfile from "../Components/Auth/profile/UserProfile.jsx";
 import "../Components/CompStyle.css"
+import MentorDiscovery from "./MentorDiscovery";
 import ProtectedLink from "./Protected/ProtectedLink";
 /*import MainList from "../Components/Main/MainList.jsx";
 */
@@ -59,6 +60,7 @@ export default function Components() {
             element={<ProtectedRoute element={AuthLoggedin} />}
           />
           <Route path="/profile/:userId" element={<UserProfile />} />
+          <Route path="/auth/mentors" element={<MentorDiscovery />} />
 
           <Route path="*" element={<Navigate to="/auth" replace />} />
         </Routes>

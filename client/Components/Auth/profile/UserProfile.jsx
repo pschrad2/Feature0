@@ -93,7 +93,7 @@ const UserProfile = () => {
               {user.get("firstName")} {user.get("lastName")}
             </Typography>
             <Typography color="text.secondary" sx={{ mb: 2 }}>
-              Advisor and Consultant
+            {user.get("Occupation") || "Occupation not set"}
             </Typography>
             <Box mt={2}>
               <Rating value={4.5} precision={0.5} readOnly />

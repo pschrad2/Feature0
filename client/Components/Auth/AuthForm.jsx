@@ -21,6 +21,20 @@ const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
           />
         </div>
         <div className="form-group">
+            <label>Occupation</label>
+            <br />
+            <input
+              type="text"
+              className="form-control"
+              id="occupation-input"
+              value={user.occupation}
+              onChange={onChange}
+              name="occupation"
+              placeholder="occupation"
+              required
+            />
+          </div>
+        <div className="form-group">
           <label>Last Name</label>
           <br />
           <input
