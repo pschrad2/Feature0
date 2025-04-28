@@ -14,9 +14,11 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^7.0.2",
     "@mui/material": "^7.0.2",
+    "algoliasearch": "^4.17.2",
     "parse": "^6.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-instantsearch-dom": "^6.40.0",
     "react-router-dom": "^7.4.1"
   },
   "devDependencies": {
